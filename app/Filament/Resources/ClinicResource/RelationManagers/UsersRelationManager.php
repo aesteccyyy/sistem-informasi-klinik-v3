@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Filament\Resources\ClinicResource\RelationManagers;
+
+use App\Enums\RoleEnum;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables;
+use Filament\Tables\Actions\AttachAction;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
+
+
+class UsersRelationManager extends RelationManager
+{
+    protected static string $relationship = 'user';
+    protected static ?string $title = 'Members';
+
+    public function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                // Forms\Components\TextInput::make('name')
+                //     ->required()
+                //     ->maxLength(255),
+            ]);
+    }
+
+    public function table(Table $table): Table
+    {
+        return $table
+            ->recordTitleAttribute('name')
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Role')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state): string => Str::upper($state))
+                    ->color(fn (string $state): string => match ($state) {
+                        RoleEnum::SUPER_ADMIN->value => 'danger',
+                        RoleEnum::ADMIN->value => 'gray',
+                        RoleEnum::OPERATOR->value => 'info',
+                        RoleEnum::PHARMACIST->value => 'warning',
+                        RoleEnum::DOCTOR->value => 'success',
+                    })
+                    ->sortable()
+                    ->searchable(),
+            ])
+            ->filters([
+                SelectFilter::make('role')
+                    ->label('Role')
+                    ->relationship('roles', 'name')
+                    ->options([
+                        RoleEnum::SUPER_ADMIN->value => RoleEnum::SUPER_ADMIN->label(),
+                        RoleEnum::ADMIN->value => RoleEnum::ADMIN->label(),
+                        RoleEnum::OPERATOR->value => RoleEnum::OPERATOR->label(),
+                        RoleEnum::PHARMACIST->value => RoleEnum::PHARMACIST->label(),
+                        RoleEnum::DOCTOR->value => RoleEnum::DOCTOR->label(),
+                    ]),
+            ])
+            ->headerActions([
+                // Tables\Actions\CreateAction::make(),
+                Tables\Actions\AttachAction::make(),
+                // ->after(function ($livewire): void {
+                //     dd($livewire);
+                // }),
+            ])
+            ->actions([
+                // Tables\Actions\EditAction::make(),
+                Tables\Actions\DetachAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    // Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}
