@@ -38,6 +38,8 @@ class ListUsers extends ListRecords
                 ->modifyQueryUsing(fn (Builder $query) => $query->with('roles')->whereRelation('roles', 'name', '=', RoleEnum::PHARMACIST->value)),
             RoleEnum::DOCTOR->value => Tab::make(Str::upper(RoleEnum::DOCTOR->value))
                 ->modifyQueryUsing(fn (Builder $query) => $query->with('roles')->whereRelation('roles', 'name', '=', RoleEnum::DOCTOR->value)),
+            RoleEnum::NURSE->value => Tab::make(Str::upper(RoleEnum::NURSE->value))
+                ->modifyQueryUsing(fn (Builder $query) => $query->with('roles')->whereRelation('roles', 'name', '=', RoleEnum::NURSE->value)),
         ];
     }
 }

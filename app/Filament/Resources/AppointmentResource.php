@@ -36,7 +36,12 @@ class AppointmentResource extends Resource
     // protected static ?string $modelLabel = 'employee';
     // protected static ?string $pluralModelLabel = 'employees';
     protected static ?int $navigationSort = 1;
-    protected static ?string $navigationGroup = 'Appointment Management';
+    protected static ?string $navigationGroup = 'Poliklinik';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
@@ -49,7 +54,7 @@ class AppointmentResource extends Resource
                     ->columns(2)
                     ->schema([
                         Forms\Components\TextInput::make('visit_number')
-                            ->label('Nomor RM Kunjungan')
+                            ->label('Nomor Kunjungan')
                             ->disabled()
                             ->dehydrated(false)
                             ->placeholder('Dibuat otomatis setelah kunjungan disimpan'),
@@ -140,7 +145,7 @@ class AppointmentResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('visit_number')
-                    ->label('Nomor RM Kunjungan')
+                    ->label('Nomor Kunjungan')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('queue_code')

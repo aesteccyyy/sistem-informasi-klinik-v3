@@ -21,7 +21,7 @@ class QueueBoard extends Page
 
     protected static ?string $title = 'Panggilan Antrian';
 
-    protected static ?string $navigationGroup = 'Registration Counter';
+    protected static ?string $navigationGroup = 'Pendaftaran & Antrian';
 
     protected static ?int $navigationSort = 2;
 

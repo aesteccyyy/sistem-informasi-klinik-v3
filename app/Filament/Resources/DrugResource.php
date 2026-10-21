@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DrugResource extends Resource
 {
+    protected static ?string $navigationLabel = 'Obat / Medication';
     protected static ?string $model = Drug::class;
 
     protected static ?string $navigationIcon = 'tabler-pills';
@@ -24,7 +25,7 @@ class DrugResource extends Resource
     // protected static ?string $modelLabel = 'employee';
     // protected static ?string $pluralModelLabel = 'employees';
     protected static ?int $navigationSort = 1;
-    protected static ?string $navigationGroup = 'Medication Management';
+    protected static ?string $navigationGroup = 'Farmasi';
 
     public static function form(Form $form): Form
     {

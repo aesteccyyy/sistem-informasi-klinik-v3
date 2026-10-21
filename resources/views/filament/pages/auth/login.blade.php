@@ -1,19 +1,19 @@
 <x-filament-panels::page.simple>
     <style>
-        .fi-simple-layout { background: linear-gradient(135deg, #f7f5fb 0%, #f4eff8 55%, #fff7fb 100%); }
+        .fi-simple-layout { background: linear-gradient(135deg, #f4f8ff 0%, #eef5ff 55%, #f8fbff 100%); }
         .fi-simple-main-ctn { padding: 2rem 1.25rem; }
         .fi-simple-main { width: min(100%, 980px) !important; max-width: 980px !important; padding: 0 !important; overflow: visible; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
         .fi-simple-page > section { gap: 1.25rem !important; }
-        .clinic-login { min-height: 470px; display: grid; grid-template-columns: minmax(300px, 340px) minmax(0, 1fr); overflow: hidden; border: 1px solid #e7e1ed; border-radius: 22px; background: rgba(255,255,255,.86); box-shadow: 0 16px 42px rgba(55, 38, 74, .11); }
-        .clinic-login__form { padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid #eee8f2; background: rgba(255,255,255,.58); }
-        .clinic-login__identity { display: flex; align-items: center; justify-content: center; gap: 12px; padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid #e8e2eb; color: #364152; }
-        .clinic-login__mark { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 15px; color: #fff; background: linear-gradient(145deg, #14b8a6, #2563eb); font-weight: 800; letter-spacing: -.06em; }
+        .clinic-login { min-height: 470px; display: grid; grid-template-columns: minmax(300px, 340px) minmax(0, 1fr); overflow: hidden; border: 1px solid #dce6f1; border-radius: 22px; background: #fff; box-shadow: 0 16px 42px rgba(35, 76, 135, .11); }
+        .clinic-login__form { padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid #e2e8f0; background: #fff; }
+        .clinic-login__identity { display: flex; align-items: center; justify-content: center; gap: 12px; padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid #e2e8f0; color: #334155; }
+        .clinic-login__mark { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 15px; color: #fff; background: linear-gradient(145deg, #2563eb, #0ea5e9); font-weight: 800; letter-spacing: -.06em; }
         .clinic-login__identity strong { display: block; font-size: 16px; }
         .clinic-login__identity span { display: block; margin-top: 2px; color: #7b8492; font-size: 12px; }
         .clinic-login__form h1 { margin: 0; color: #202534; font-size: 25px; font-weight: 750; letter-spacing: -.03em; }
         .clinic-login__form > p { margin: 8px 0 24px; color: #667085; font-size: 14px; }
-        .clinic-login__art { position: relative; min-height: 470px; padding: 36px 32px; overflow: hidden; background: radial-gradient(ellipse at 68% 62%, #e5e8ff 0%, #f0eafb 42%, #f8f4fa 78%); }
-        .clinic-login__art:before, .clinic-login__art:after { content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.44); }
+        .clinic-login__art { position: relative; min-height: 470px; padding: 36px 32px; overflow: hidden; background: radial-gradient(ellipse at 68% 62%, #dbeafe 0%, #eff6ff 46%, #f8fbff 82%); }
+        .clinic-login__art:before, .clinic-login__art:after { content: ''; position: absolute; border-radius: 50%; background: rgba(255,255,255,.58); }
         .clinic-login__art:before { width: 280px; height: 280px; right: -65px; top: -90px; }
         .clinic-login__art:after { width: 180px; height: 180px; left: -75px; bottom: -65px; }
         .clinic-login__welcome { position: relative; z-index: 1; }
@@ -23,8 +23,10 @@
         .clinic-login__illustration { position: absolute; z-index: 1; left: 5%; right: 5%; top: 22%; width: 90%; height: 70%; }
         .clinic-login .fi-input-wrp { border-radius: 12px; }
         .clinic-login .fi-btn { border-radius: 999px; min-height: 46px; }
-        .clinic-login .fi-fo-field-wrp-label { font-weight: 600; }
-        .clinic-login__brand { width: fit-content; margin: 0 auto; padding: 7px 15px; border: 1px solid rgba(106, 91, 124, .14); border-radius: 12px; background: rgba(255,255,255,.86); box-shadow: 0 4px 16px rgba(55,38,74,.08); color: #64716d; font-size: 17px; font-weight: 800; letter-spacing: .03em; }
+        .clinic-login .fi-fo-field-wrp-label { display: block !important; color: #344054 !important; opacity: 1 !important; font-weight: 600; }
+        .clinic-login .fi-input-wrp input { color: #1f2937 !important; background: #fff !important; }
+        .clinic-login .fi-input-wrp input::placeholder { color: #98a2b3 !important; opacity: 1; }
+        .clinic-login__brand { width: fit-content; margin: 0 auto; padding: 7px 15px; border: 1px solid #dce6f1; border-radius: 12px; background: #fff; box-shadow: 0 4px 16px rgba(35,76,135,.08); color: #334155; font-size: 17px; font-weight: 800; letter-spacing: .03em; }
         .clinic-login__brand span { color: #12a99a; }
         @media (max-width: 760px) {
             .fi-simple-main-ctn { padding: 1.5rem .75rem; }

@@ -35,6 +35,11 @@ class EmrResource extends Resource
 
     protected static ?string $navigationGroup = null;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema([]);
@@ -53,7 +58,7 @@ class EmrResource extends Resource
             })
             ->columns([
                 Tables\Columns\TextColumn::make('visit_number')
-                    ->label('Nomor RM Kunjungan')->sortable(),
+                    ->label('Nomor Kunjungan')->sortable(),
                 Tables\Columns\TextColumn::make('queue_code')
                     ->label('Kode Antrian')->badge()->color('info'),
                 Tables\Columns\TextColumn::make('patient.name')

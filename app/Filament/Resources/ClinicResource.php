@@ -34,7 +34,7 @@ class ClinicResource extends Resource
     // protected static ?string $modelLabel = 'employee';
     // protected static ?string $pluralModelLabel = 'employees';
     protected static ?int $navigationSort = 1;
-    protected static ?string $navigationGroup = 'Clinic Management';
+    protected static ?string $navigationGroup = 'Administrasi Klinik';
 
     public static function form(Form $form): Form
     {
@@ -69,6 +69,12 @@ class ClinicResource extends Resource
                             ->label('SATUSEHAT Organization ID'),
                         Forms\Components\TextInput::make('satusehat_location_id')
                             ->label('SATUSEHAT Location ID'),
+                        Forms\Components\Toggle::make('has_inpatient')
+                            ->label('Layanan Rawat Inap')
+                            ->helperText('Tampilkan menu rawat inap untuk klinik ini.'),
+                        Forms\Components\Toggle::make('has_emergency')
+                            ->label('Layanan IGD')
+                            ->helperText('Aktifkan layanan IGD untuk klinik ini.'),
                     ]),
                 Section::make('Region Info')
                     ->label('Patient\'s Domicile')

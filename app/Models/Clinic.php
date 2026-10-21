@@ -19,6 +19,8 @@ class Clinic extends Model
         'logo',
         'satusehat_organization_id',
         'satusehat_location_id',
+        'has_inpatient',
+        'has_emergency',
         'address',
         'province_id',
         'regency_id',
@@ -28,6 +30,8 @@ class Clinic extends Model
 
     protected $casts = [
         'type' => ClinicTypeEnum::class,
+        'has_inpatient' => 'boolean',
+        'has_emergency' => 'boolean',
         'province_id' => 'string',
         'regency_id' => 'string',
         'district_id' => 'string',

@@ -12,6 +12,7 @@ enum RoleEnum: string
     case OPERATOR = 'operator';
     case PHARMACIST = 'pharmacist';
     case DOCTOR = 'doctor';
+    case NURSE = 'nurse';
 
     // extra helper to allow for greater customization of displayed values, without disclosing the name/value data directly
     public function label(): string
@@ -22,6 +23,7 @@ enum RoleEnum: string
             static::OPERATOR => ucwords(Str::replace('_', ' ', self::OPERATOR->value)),
             static::PHARMACIST => ucwords(Str::replace('_', ' ', self::PHARMACIST->value)),
             static::DOCTOR => ucwords(Str::replace('_', ' ', self::DOCTOR->value)),
+            static::NURSE => 'Perawat',
         };
     }
     public static function values(): array
@@ -36,6 +38,7 @@ enum RoleEnum: string
             static::OPERATOR => 'info',
             static::PHARMACIST => 'warning',
             static::DOCTOR => 'indigo',
+            static::NURSE => 'success',
         };
     }
 }

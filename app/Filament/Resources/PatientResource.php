@@ -38,7 +38,7 @@ class PatientResource extends Resource
     protected static ?string $modelLabel = 'patient';
     protected static ?string $pluralModelLabel = 'patients';
     protected static ?int $navigationSort = 2;
-    protected static ?string $navigationGroup = 'Appointment Management';
+    protected static ?string $navigationGroup = 'Poliklinik';
 
     public static function form(Form $form): Form
     {

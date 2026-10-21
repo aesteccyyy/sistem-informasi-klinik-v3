@@ -42,6 +42,9 @@ class Appointment extends Model
         'satusehat_sync_status',
         'satusehat_sync_error',
         'satusehat_synced_at',
+        'voided_at',
+        'voided_by',
+        'void_reason',
         'status',
     ];
 
@@ -50,6 +53,7 @@ class Appointment extends Model
         'schedule_date' => 'datetime',
         'queue_called_at' => 'datetime',
         'satusehat_synced_at' => 'datetime',
+        'voided_at' => 'datetime',
         'height' => 'integer',
         'weight' => 'integer',
         'status' => AppointmentStatusEnum::class,

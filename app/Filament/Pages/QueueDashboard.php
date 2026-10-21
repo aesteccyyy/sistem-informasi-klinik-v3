@@ -20,7 +20,7 @@ class QueueDashboard extends Page
 
     protected static ?string $title = 'Dashboard Antrian';
 
-    protected static ?string $navigationGroup = 'Registration Counter';
+    protected static ?string $navigationGroup = 'Pendaftaran & Antrian';
 
     protected static ?int $navigationSort = 3;
 

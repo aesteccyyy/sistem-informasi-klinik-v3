@@ -22,7 +22,7 @@ class DrugCategoryResource extends Resource
     // protected static ?string $modelLabel = 'employee';
     // protected static ?string $pluralModelLabel = 'employees';
     protected static ?int $navigationSort = 2;
-    protected static ?string $navigationGroup = 'Medication Management';
+    protected static ?string $navigationGroup = 'Farmasi';
 
     public static function form(Form $form): Form
     {

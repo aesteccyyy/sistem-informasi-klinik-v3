@@ -10,10 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Patient extends Model
 {
     use HasFactory;
+
+    protected $hidden = ['id', 'medical_record_number'];
 
     protected $fillable = [
         'name',
@@ -52,6 +55,16 @@ class Patient extends Model
     protected static function booted()
     {
         parent::booted();
+        static::creating(function (Patient $patient): void {
+            if (blank($patient->medical_record_number)) {
+                $patient->medical_record_number = 'RM-' . Str::ulid();
+            }
+        });
+        static::created(function (Patient $patient): void {
+            $patient->forceFill([
+                'medical_record_number' => str_pad((string) $patient->getKey(), 6, '0', STR_PAD_LEFT),
+            ])->saveQuietly();
+        });
         static::saving(function ($patient) {
             $patient->age = $patient->birth_date
                 ? Carbon::parse($patient->birth_date)->age

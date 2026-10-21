@@ -377,5 +377,13 @@ class PermissionSeeder extends Seeder
             // 'delete_any_bill',
             // 'delete_bill',
         ]);
+
+        $nurse = Role::firstOrCreate(['name' => RoleEnum::NURSE->value, 'guard_name' => 'web']);
+        $nurse->syncPermissions([
+            'view_any_patient', 'view_patient', 'create_patient', 'update_patient',
+            'view_any_appointment', 'view_appointment', 'update_appointment',
+            'view_any_drug', 'view_drug',
+            'view_any_prescription', 'view_prescription',
+        ]);
     }
 }

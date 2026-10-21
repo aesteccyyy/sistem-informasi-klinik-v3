@@ -95,6 +95,7 @@ class RoleResource extends Resource implements HasShieldPermissions
                         RoleEnum::OPERATOR->value => 'info',
                         RoleEnum::PHARMACIST->value => 'warning',
                         RoleEnum::DOCTOR->value => 'success',
+                        RoleEnum::NURSE->value => 'info',
                     })
                     ->sortable()
                     ->searchable(),
@@ -166,7 +167,7 @@ class RoleResource extends Resource implements HasShieldPermissions
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Clinic Management';
+        return 'Administrasi Klinik';
     }
 
     public static function getNavigationLabel(): string

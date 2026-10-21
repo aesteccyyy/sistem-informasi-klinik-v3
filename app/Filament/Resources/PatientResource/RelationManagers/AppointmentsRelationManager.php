@@ -12,7 +12,7 @@ class AppointmentsRelationManager extends RelationManager
 {
     protected static string $relationship = 'appointments';
 
-    protected static ?string $title = 'Riwayat Nomor RM Kunjungan';
+    protected static ?string $title = 'Riwayat Kunjungan';
 
     public function form(Form $form): Form
     {
@@ -24,7 +24,7 @@ class AppointmentsRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('visit_number')
-                    ->label('Nomor RM')
+                    ->label('Nomor Kunjungan')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('schedule_date')

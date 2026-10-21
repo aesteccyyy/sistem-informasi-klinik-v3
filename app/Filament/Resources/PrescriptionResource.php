@@ -34,7 +34,7 @@ class PrescriptionResource extends Resource
     protected static ?string $navigationIcon = 'tabler-prescription';
 
     protected static ?int $navigationSort = 3;
-    protected static ?string $navigationGroup = 'Medication Management';
+    protected static ?string $navigationGroup = 'Farmasi';
 
     public static function getNavigationLabel(): string
     {

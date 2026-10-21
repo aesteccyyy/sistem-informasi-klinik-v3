@@ -24,7 +24,7 @@ class TreatmentServiceResource extends Resource
 
     protected static ?string $pluralModelLabel = 'tarif tindakan';
 
-    protected static ?string $navigationGroup = 'Clinic Management';
+    protected static ?string $navigationGroup = 'Administrasi Klinik';
 
     protected static ?int $navigationSort = 1;
 

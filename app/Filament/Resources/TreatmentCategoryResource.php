@@ -22,7 +22,7 @@ class TreatmentCategoryResource extends Resource
     // protected static ?string $modelLabel = 'employee';
     // protected static ?string $pluralModelLabel = 'employees';
     protected static ?int $navigationSort = 3;
-    protected static ?string $navigationGroup = 'Clinic Management';
+    protected static ?string $navigationGroup = 'Administrasi Klinik';
     public static function form(Form $form): Form
     {
         return $form

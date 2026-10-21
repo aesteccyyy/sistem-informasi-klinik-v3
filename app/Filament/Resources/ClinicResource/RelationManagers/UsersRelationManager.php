@@ -49,6 +49,7 @@ class UsersRelationManager extends RelationManager
                         RoleEnum::OPERATOR->value => 'info',
                         RoleEnum::PHARMACIST->value => 'warning',
                         RoleEnum::DOCTOR->value => 'success',
+                        RoleEnum::NURSE->value => 'info',
                     })
                     ->sortable()
                     ->searchable(),
@@ -63,6 +64,7 @@ class UsersRelationManager extends RelationManager
                         RoleEnum::OPERATOR->value => RoleEnum::OPERATOR->label(),
                         RoleEnum::PHARMACIST->value => RoleEnum::PHARMACIST->label(),
                         RoleEnum::DOCTOR->value => RoleEnum::DOCTOR->label(),
+                        RoleEnum::NURSE->value => RoleEnum::NURSE->label(),
                     ]),
             ])
             ->headerActions([

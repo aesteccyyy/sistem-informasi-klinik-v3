@@ -26,7 +26,7 @@ class SatusehatPatientResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $navigationGroup = 'SATUSEHAT';
+    protected static ?string $navigationGroup = 'Integrasi SATUSEHAT';
 
     public static function table(Table $table): Table
     {

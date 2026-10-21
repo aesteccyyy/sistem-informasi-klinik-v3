@@ -36,7 +36,7 @@ class TransactionResource extends Resource
     // protected static ?string $modelLabel = 'employee';
     // protected static ?string $pluralModelLabel = 'employees';
     protected static ?int $navigationSort = 3;
-    protected static ?string $navigationGroup = 'Appointment Management';
+    protected static ?string $navigationGroup = 'Poliklinik';
 
     public static function form(Form $form): Form
     {

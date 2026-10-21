@@ -67,7 +67,7 @@
             <tr><td>01</td><td>Gambaran umum aplikasi dan alur layanan</td></tr>
             <tr><td>02</td><td>Akses, login, menu, dan peran pengguna</td></tr>
             <tr><td>03</td><td>Master data pasien, pegawai, dan klinik</td></tr>
-            <tr><td>04</td><td>Appointment dan nomor RM kunjungan</td></tr>
+            <tr><td>04</td><td>Appointment dan nomor kunjungan</td></tr>
             <tr><td>05</td><td>Pengisian EMR dan SOAP</td></tr>
             <tr><td>06</td><td>Resep, tindakan, dan persediaan obat</td></tr>
             <tr><td>07</td><td>Transaksi, pembayaran, dan struk</td></tr>
@@ -93,11 +93,11 @@
         <h3>Bagian aplikasi</h3>
         <table><tr><th>Bagian</th><th>Fungsi utama</th><th>Contoh data</th></tr>
             <tr><td>Administrasi</td><td>Pengguna, role, klinik, pasien</td><td>Akun, identitas, alamat, hubungan pegawai-klinik</td></tr>
-            <tr><td>Pelayanan</td><td>Appointment dan EMR</td><td>Tanggal, dokter, RM kunjungan, vital sign, SOAP</td></tr>
+            <tr><td>Pelayanan</td><td>Appointment dan EMR</td><td>Tanggal, dokter, nomor kunjungan, vital sign, SOAP</td></tr>
             <tr><td>Farmasi & billing</td><td>Obat, resep, tindakan, transaksi</td><td>Stok, jumlah, harga, diskon, status pembayaran</td></tr>
             <tr><td>Interoperabilitas</td><td>Sinkronisasi SATUSEHAT</td><td>IHS ID, Organization/Location/Practitioner ID, status kirim</td></tr>
         </table>
-        <div class="warning"><b>Pemisahan identitas:</b> data induk pasien tetap satu. Nomor RM yang terlihat pada kunjungan adalah nomor rekam medis kunjungan dan dibuat pada appointment. Riwayat kunjungan pasien dapat dilihat dari EMR menggunakan identitas pasien dan filter tanggal.</div>
+        <div class="warning"><b>Pemisahan identitas:</b> setiap pasien memiliki patient ID internal dan nomor RM tetap enam digit. Patient ID tidak ditampilkan; nomor RM tampil pada daftar EMR, sementara nomor kunjungan tetap menjadi identitas terpisah untuk setiap appointment. Data induk pasien tetap satu untuk layanan rawat jalan, rawat inap, dan IGD.</div>
     </section>
 
     <section class="page">
@@ -142,10 +142,10 @@
     </section>
 
     <section class="page">
-        <h2>04 · Appointment dan Nomor RM Kunjungan</h2>
+        <h2>04 · Appointment dan Nomor Kunjungan</h2>
         <p>Appointment dipakai untuk membuat jadwal kunjungan dan menghubungkan pasien ke dokter serta klinik. Menu ini bukan tempat utama mencari/mengisi SOAP; pengisian EMR dilakukan dari menu EMR.</p>
         <h3>Membuat appointment</h3>
-        <ol><li>Buka <b>Appointment</b> lalu pilih tambah.</li><li>Pilih pasien yang sudah terdaftar.</li><li>Pilih pasangan klinik dan dokter.</li><li>Tentukan tanggal kunjungan, lalu simpan.</li><li>Appointment mendapat nomor RM kunjungan, kode antrian, dan status awal <span class="pill">SCHEDULED</span>.</li></ol>
+        <ol><li>Buka <b>Appointment</b> lalu pilih tambah.</li><li>Pilih pasien yang sudah terdaftar.</li><li>Pilih pasangan klinik dan dokter.</li><li>Tentukan tanggal kunjungan, lalu simpan.</li><li>Appointment mendapat nomor kunjungan, kode antrian, dan status awal <span class="pill">SCHEDULED</span>.</li></ol>
         <p>Kode antrian menggunakan format <b>A-001</b> dan berurutan berdasarkan appointment yang dibuat untuk tanggal dan klinik yang sama. Urutan dimulai kembali pada tanggal berikutnya. Kode tampil pada daftar Appointment, EMR, dan halaman Panggilan Antrian.</p>
         <h3>Halaman Panggilan dan Dashboard Panggilan</h3>
         <p>Menu <b>Panggilan Antrian</b> dipakai petugas untuk memilih klinik/tanggal dan mengelola nomor. Petugas berizin dapat memilih <b>Panggil Berikutnya</b>; halaman menampilkan kode yang sedang dipanggil dan menyebutnya melalui browser bila audio tersedia. <b>Panggil Ulang</b> mengulang panggilan. <b>Lewati</b> menandai nomor saat ini dilewati. Saat nomor berikutnya dipanggil, nomor sebelumnya otomatis ditandai selesai.</p>
@@ -157,10 +157,10 @@
             <tr><td>Prepared</td><td>Resep disiapkan.</td></tr>
             <tr><td>Confirmed</td><td>Kunjungan dikonfirmasi selesai; sistem membuat transaksi tagihan bila transaksi belum ada.</td></tr>
         </table>
-        <div class="callout"><b>Nomor RM kunjungan:</b> satu appointment memiliki nomor RM sendiri. Riwayat pasien lintas kunjungan ditelusuri dari pasien/EMR, bukan dengan menganggap satu nomor appointment berlaku untuk seluruh kunjungan.</div>
+        <div class="callout"><b>Nomor kunjungan:</b> setiap appointment memiliki nomor kunjungan sendiri. Nomor RM tetap melekat pada data induk pasien dan tidak ditampilkan. Riwayat lintas kunjungan ditelusuri melalui pasien/EMR.</div>
         <div class="danger"><b>Perhatian:</b> konfirmasi appointment memicu pembuatan transaksi dari item tindakan dan resep saat itu. Pastikan detail billing diperiksa sebelum status diubah ke Confirmed.</div>
         <h3>Daftar Appointment</h3>
-        <p>Daftar menampilkan pasien, klinik, dokter, tanggal, nomor RM kunjungan, vital sign, status appointment, dan status sinkronisasi pasien SATUSEHAT. Filter status tersedia; gunakan pencarian tabel untuk menemukan data.</p>
+        <p>Daftar menampilkan pasien, klinik, dokter, tanggal, nomor kunjungan, vital sign, status appointment, dan status sinkronisasi pasien SATUSEHAT. Filter status tersedia; gunakan pencarian tabel untuk menemukan data.</p>
     </section>
 
     <section class="page">
@@ -286,7 +286,7 @@ php artisan serve</pre>
             <tr><td>Menu tidak terlihat</td><td>Role, permission Shield, hubungan user-klinik.</td><td>Minta admin memeriksa role dan permission; jangan menaikkan role tanpa persetujuan.</td></tr>
             <tr><td>Obat tidak muncul di resep</td><td>Klinik appointment, klinik pada obat, stok > 0, status tersedia.</td><td>Perbaiki mapping obat/klinik dan stok pada Drugs.</td></tr>
             <tr><td>Impor obat gagal</td><td>CSV UTF-8, delimiter titik koma, header, nama kategori.</td><td>Gunakan template hasil ekspor; buat kategori lebih dulu; cek pesan baris yang gagal.</td></tr>
-            <tr><td>Nomor RM kunjungan tidak tampil</td><td>Appointment sudah disimpan dan nomor hasil generate.</td><td>Refresh record/daftar; cek log dan proses penyimpanan jika tetap kosong.</td></tr>
+            <tr><td>Nomor kunjungan tidak tampil</td><td>Appointment sudah disimpan dan nomor hasil generate.</td><td>Refresh record/daftar; cek log dan proses penyimpanan jika tetap kosong.</td></tr>
             <tr><td>EMR tidak menemukan pasien</td><td>Filter tanggal (default hari ini), ejaan nama, tanggal lahir, klinik akses.</td><td>Kosongkan tanggal untuk mencari lintas tanggal, isi nama/tanggal lahir lalu klik Cari.</td></tr>
             <tr><td>Tagihan belum ada</td><td>Status appointment belum Confirmed atau belum ada item billing.</td><td>Periksa tindakan/resep dan proses konfirmasi. Hindari mengonfirmasi ulang tanpa meninjau transaksi.</td></tr>
             <tr><td>SATUSEHAT sync gagal</td><td>Status pasien, NIK, IHS, Practitioner/Organization/Location, kode, credential, endpoint.</td><td>Baca error, cek log tanpa membocorkan secret, koreksi mapping dan uji ulang di sandbox.</td></tr>

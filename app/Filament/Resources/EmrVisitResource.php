@@ -30,26 +30,26 @@ class EmrVisitResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Section::make('Data Pasien dan Appointment')->columns(3)->schema([
+            Forms\Components\Section::make('Data Pasien dan Appointment')->columns(2)->schema([
                 Forms\Components\Placeholder::make('patient_name')->label('Pasien')->content(fn (?Appointment $record): string => $record?->patient?->name ?? '-'),
                 Forms\Components\Placeholder::make('patient_nik')->label('NIK')->content(fn (?Appointment $record): string => $record?->patient?->nik ?? '-'),
                 Forms\Components\Placeholder::make('patient_phone')->label('Telepon')->content(fn (?Appointment $record): string => $record?->patient?->phone ?? '-'),
-                Forms\Components\Placeholder::make('visit_number')->label('Nomor RM Kunjungan')->content(fn (?Appointment $record): string => $record?->visit_number ?? '-'),
+                Forms\Components\Placeholder::make('visit_number')->label('Nomor Kunjungan')->content(fn (?Appointment $record): string => $record?->visit_number ?? '-'),
                 Forms\Components\Placeholder::make('schedule_date')->label('Tanggal')->content(fn (?Appointment $record): string => $record?->schedule_date?->format('d/m/Y') ?? '-'),
                 Forms\Components\Placeholder::make('doctor')->label('Dokter')->content(fn (?Appointment $record): string => $record?->clinic_user?->user?->name ?? '-'),
             ]),
-            Section::make('Pemeriksaan Fisik')->columns(3)->schema([
+            Section::make('Pemeriksaan Fisik')->columns(1)->schema([
                 Forms\Components\TextInput::make('height')->label('Tinggi Badan (cm)')->numeric()->minValue(1)->required(),
                 Forms\Components\TextInput::make('weight')->label('Berat Badan (kg)')->numeric()->minValue(1)->required(),
                 Forms\Components\TextInput::make('blood_pressure')->label('Tekanan Darah')->placeholder('120/80')->required(),
             ]),
-            Forms\Components\Section::make('SOAP')->columns(2)->schema([
-                Forms\Components\Textarea::make('symptoms')->label('S - Subjective / Keluhan')->required()->columnSpanFull(),
-                Forms\Components\Textarea::make('objective')->label('O - Objective / Pemeriksaan')->columnSpanFull(),
-                Forms\Components\Textarea::make('diagnostic')->label('A - Assessment / Diagnosis')->columnSpanFull(),
-                Forms\Components\Textarea::make('plan')->label('P - Plan / Rencana')->columnSpanFull(),
+            Forms\Components\Section::make('SOAP')->columns(1)->schema([
+                Forms\Components\Textarea::make('symptoms')->label('S — Subjective / Keluhan')->rows(5)->required()->columnSpanFull(),
+                Forms\Components\Textarea::make('objective')->label('O — Objective / Pemeriksaan')->rows(5)->columnSpanFull(),
+                Forms\Components\Textarea::make('diagnostic')->label('A — Assessment / Diagnosis')->rows(5)->columnSpanFull(),
+                Forms\Components\Textarea::make('plan')->label('P — Plan / Rencana')->rows(5)->columnSpanFull(),
             ]),
-            Section::make('Diagnosis SATUSEHAT')->schema([
+            Section::make('Diagnosis SATUSEHAT')->columns(1)->schema([
                 Forms\Components\Select::make('satusehat_diagnosis_code')
                     ->label('Kode Diagnosis ICD-10')
                     ->searchable()
@@ -66,20 +66,20 @@ class EmrVisitResource extends Resource
                     ->native(false)
                     ->placeholder('Cari kode atau nama diagnosis ICD-10'),
             ]),
-            Section::make('Diagnosis Klinis')->schema([
+            Section::make('Diagnosis Klinis')->columns(1)->schema([
                 Forms\Components\Repeater::make('clinicalImpressions')->relationship()->schema([
                     Forms\Components\Select::make('status')->options(['in-progress' => 'Dalam proses', 'completed' => 'Selesai', 'entered-in-error' => 'Salah input'])->default('completed')->required(),
                     Forms\Components\TextInput::make('investigation_system')->default('http://snomed.info/sct')->required(),
                     Forms\Components\TextInput::make('investigation_code')->label('Kode SNOMED CT')->required(),
                     Forms\Components\TextInput::make('investigation_display')->label('Pemeriksaan')->required(),
-                    Forms\Components\Textarea::make('investigation')->label('Catatan pemeriksaan')->columnSpanFull(),
-                    Forms\Components\Textarea::make('summary')->label('Ringkasan')->required()->columnSpanFull(),
+                    Forms\Components\Textarea::make('investigation')->label('Catatan pemeriksaan')->rows(4)->columnSpanFull(),
+                    Forms\Components\Textarea::make('summary')->label('Ringkasan')->rows(4)->required()->columnSpanFull(),
                     Forms\Components\TextInput::make('prognosis_system')->default('http://terminology.kemkes.go.id/CodeSystem/clinical-term')->required(),
                     Forms\Components\TextInput::make('prognosis_code')->label('Kode prognosis')->required(),
                     Forms\Components\TextInput::make('prognosis_display')->label('Prognosis')->required(),
-                ])->columns(2)->defaultItems(0)->addActionLabel('Tambah diagnosis klinis'),
+                ])->columns(1)->defaultItems(0)->addActionLabel('Tambah diagnosis klinis'),
             ]),
-            Section::make('Target Perawatan')->schema([
+            Section::make('Target Perawatan')->columns(1)->schema([
                 Forms\Components\Repeater::make('careGoals')->relationship()->schema([
                     Forms\Components\Select::make('lifecycle_status')->options(['proposed' => 'Diusulkan', 'planned' => 'Direncanakan', 'accepted' => 'Disetujui', 'active' => 'Aktif', 'on-hold' => 'Ditunda', 'completed' => 'Selesai', 'cancelled' => 'Dibatalkan'])->default('active')->required(),
                     Forms\Components\TextInput::make('description_system')->default('http://snomed.info/sct')->required(),
@@ -88,23 +88,23 @@ class EmrVisitResource extends Resource
                     Forms\Components\DatePicker::make('start_date')->label('Tanggal mulai'),
                     Forms\Components\TextInput::make('target_detail')->label('Nilai target'),
                     Forms\Components\DatePicker::make('target_due_date')->label('Target selesai'),
-                    Forms\Components\Textarea::make('notes')->label('Catatan')->columnSpanFull(),
-                ])->columns(2)->defaultItems(0)->addActionLabel('Tambah target perawatan'),
+                    Forms\Components\Textarea::make('notes')->label('Catatan')->rows(4)->columnSpanFull(),
+                ])->columns(1)->defaultItems(0)->addActionLabel('Tambah target perawatan'),
             ]),
-            Section::make('Rencana dan Instruksi Perawatan')->schema([
+            Section::make('Rencana dan Instruksi Perawatan')->columns(1)->schema([
                 Forms\Components\Repeater::make('carePlans')->relationship()->schema([
                     Forms\Components\Select::make('plan_type')->options(['care' => 'Rencana perawatan', 'medication_instruction' => 'Instruksi obat', 'nursing_instruction' => 'Instruksi keperawatan'])->required(),
                     Forms\Components\Select::make('status')->options(['draft' => 'Draft', 'active' => 'Aktif', 'on-hold' => 'Ditunda', 'revoked' => 'Dicabut', 'completed' => 'Selesai'])->default('active')->required(),
                     Forms\Components\Select::make('intent')->options(['proposal' => 'Usulan', 'plan' => 'Rencana', 'order' => 'Instruksi'])->default('plan')->required(),
                     Forms\Components\TextInput::make('title')->label('Judul')->required(),
-                    Forms\Components\Textarea::make('description')->label('Deskripsi')->columnSpanFull(),
-                    Forms\Components\Textarea::make('activity_description')->label('Aktivitas')->required()->columnSpanFull(),
+                    Forms\Components\Textarea::make('description')->label('Deskripsi')->rows(4)->columnSpanFull(),
+                    Forms\Components\Textarea::make('activity_description')->label('Aktivitas')->rows(4)->required()->columnSpanFull(),
                     Forms\Components\Select::make('activity_status')->options(['not-started' => 'Belum dimulai', 'scheduled' => 'Terjadwal', 'in-progress' => 'Berlangsung', 'on-hold' => 'Ditunda', 'completed' => 'Selesai', 'cancelled' => 'Dibatalkan'])->default('not-started')->required(),
                     Forms\Components\TextInput::make('scheduled_string')->label('Jadwal'),
-                    Forms\Components\Textarea::make('notes')->label('Catatan')->columnSpanFull(),
-                ])->columns(2)->defaultItems(0)->addActionLabel('Tambah rencana/instruksi'),
+                    Forms\Components\Textarea::make('notes')->label('Catatan')->rows(4)->columnSpanFull(),
+                ])->columns(1)->defaultItems(0)->addActionLabel('Tambah rencana/instruksi'),
             ]),
-            Section::make('Status Kunjungan')->schema([
+            Section::make('Status Kunjungan')->columns(1)->schema([
                 Radio::make('status')->options([
                     AppointmentStatusEnum::SCHEDULED->value => Str::upper(AppointmentStatusEnum::SCHEDULED->label()),
                     AppointmentStatusEnum::DIAGNOSED->value => Str::upper(AppointmentStatusEnum::DIAGNOSED->label()),

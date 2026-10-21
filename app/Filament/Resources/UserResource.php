@@ -30,7 +30,7 @@ class UserResource extends Resource
     protected static ?string $modelLabel = 'employee';
     protected static ?string $pluralModelLabel = 'employees';
     protected static ?int $navigationSort = 1;
-    protected static ?string $navigationGroup = 'Clinic Management';
+    protected static ?string $navigationGroup = 'Administrasi Klinik';
 
     public static function form(Form $form): Form
     {
@@ -151,6 +151,7 @@ class UserResource extends Resource
                         RoleEnum::OPERATOR->value => 'info',
                         RoleEnum::PHARMACIST->value => 'warning',
                         RoleEnum::DOCTOR->value => 'success',
+                        RoleEnum::NURSE->value => 'info',
                     })
                     ->sortable()
                     ->searchable(),

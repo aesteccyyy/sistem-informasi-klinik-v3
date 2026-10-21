@@ -3,6 +3,7 @@
 namespace App\Filament\Pages\Auth;
 
 use Filament\Actions\Action;
+use Filament\Forms\Components\Component;
 use Filament\Pages\Auth\Login as BaseLogin;
 use Illuminate\Contracts\Support\Htmlable;
 
@@ -25,6 +26,20 @@ class Login extends BaseLogin
     public function getHeading(): string|Htmlable
     {
         return '';
+    }
+
+    protected function getEmailFormComponent(): Component
+    {
+        return parent::getEmailFormComponent()
+            ->label('Email')
+            ->placeholder('Masukkan email Anda');
+    }
+
+    protected function getPasswordFormComponent(): Component
+    {
+        return parent::getPasswordFormComponent()
+            ->label('Kata Sandi')
+            ->placeholder('Masukkan kata sandi');
     }
 
     protected function getAuthenticateFormAction(): Action
